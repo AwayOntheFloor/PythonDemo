@@ -1,0 +1,26 @@
+import csv
+import random
+data= []
+#保存文件
+filename='D:\\xinjiangResult.csv'
+#读取文件
+fp=open('d:\\0830.txt','r')
+lines = fp.readlines()
+fp.close()
+for line in lines:
+    CorX=line.split("	")[1].split(",")[0]
+    CorY=line.split("	")[1].split(",")[1]
+    Energy1=max(line.split("	")[0].split(",")[0],line.split("	")[0].split(",")[1])
+    Energy2=max(line.split("	")[0].split(",")[2],line.split("	")[0].split(",")[3])
+    Energy3=max(line.split("	")[0].split(",")[4],line.split("	")[0].split(",")[5])
+    Energy4=max(line.split("	")[0].split(",")[6],line.split("	")[0].split(",")[7])
+    Sum = int(Energy1)+int(Energy2)+int(Energy3)+int(Energy4)
+    data=[float(CorX),float(CorY),int(Energy1),int(Energy2),int(Energy3),int(Energy4),int(Sum)]
+    csvfile=open(filename,'a',newline='')
+    writer=csv.writer(csvfile,delimiter=',')
+    writer.writerow(data)
+    data=[]
+    csvfile.close()
+    #print(line.split("	")[0])
+def max(a,b):
+ return a if a>=b else b
